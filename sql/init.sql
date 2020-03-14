@@ -1,3 +1,5 @@
+create database users;
+
 create table if not exists users.User
 (
 	id int auto_increment
