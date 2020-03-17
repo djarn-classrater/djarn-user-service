@@ -23,7 +23,7 @@ import {UserRepository} from '../repositories';
 export class UserController {
   constructor(
     @repository(UserRepository)
-    public userRepository : UserRepository,
+    public userRepository: UserRepository,
   ) {}
 
   @post('/users', {
@@ -80,9 +80,9 @@ export class UserController {
     },
   })
   async find(
-    @param.query.object('filter', getFilterSchemaFor(User)) filter?: Filter<User>,
+    @param.query.string('studentId') studentId: string,
   ): Promise<User[]> {
-    return this.userRepository.find(filter);
+    return this.userRepository.find({where: {studentId}});
   }
 
   @patch('/users', {
@@ -119,11 +119,8 @@ export class UserController {
       },
     },
   })
-  async findById(
-    @param.path.number('id') id: number,
-    @param.query.object('filter', getFilterSchemaFor(User)) filter?: Filter<User>
-  ): Promise<User> {
-    return this.userRepository.findById(id, filter);
+  async findById(@param.path.number('id') id: number): Promise<User> {
+    return this.userRepository.findById(id);
   }
 
   @patch('/users/{id}', {
