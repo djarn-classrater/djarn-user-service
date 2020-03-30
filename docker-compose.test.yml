@@ -1,4 +1,4 @@
-version: '2.1'
+version: "2.1"
 
 services:
   user:
@@ -11,8 +11,6 @@ services:
         condition: service_healthy
     volumes:
       - ./:/home/node/app
-    networks:
-      - djarn
 
   userDb:
     image: mysql
@@ -26,15 +24,9 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: 1234
     healthcheck:
-      test: ['CMD', 'mysqladmin', 'ping', '-h', 'localhost']
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
       timeout: 20s
       retries: 10
-    networks:
-      - djarn
-
-networks:
-  djarn:
-    external: true
 
 volumes:
   userDb:
