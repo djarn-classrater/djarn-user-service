@@ -27,7 +27,7 @@
     "test:dev": "lb-mocha --allow-console-logs dist/__tests__/**/*.js && npm run posttest",
     "docker:build": "docker build -t djarn-user-service .",
     "docker:run": "docker run -p 3000:3000 -d djarn-user-service",
-    "docker:test": "yarn docker:build && docker-compose -f docker-compose.test.yml up --exit-code-from user",
+    "docker:test": "docker-compose -f docker-compose.test.yml build && docker-compose -f docker-compose.test.yml up --exit-code-from user",
     "migrate": "node ./dist/migrate",
     "prestart": "npm run build",
     "start": "node -r source-map-support/register .",
