@@ -11,7 +11,7 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: 12.x
-      - name: Install Dependencies
-        run: yarn install
+      - name: Build container
+        run: docker-compose -f docker-compose.test.yml build
       - name: Test
-        run: sudo docker-compose -f docker-compose.test.yml up --exit-code-from user
+        run: docker-compose -f docker-compose.test.yml up --exit-code-from user

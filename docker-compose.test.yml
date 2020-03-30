@@ -9,8 +9,6 @@ services:
     depends_on:
       userDb:
         condition: service_healthy
-    volumes:
-      - ./:/home/node/app
 
   userDb:
     image: mysql
